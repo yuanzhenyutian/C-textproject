@@ -1,0 +1,25 @@
+# Visual Studio 临时文件
+.vs/
+*.suo
+*.user
+*.ipch
+*.pdb
+
+# 编译输出
+Debug/
+Release/
+*.obj
+*.exe
+*.dll
+*.lib
+
+# CMake / Make 临时文件
+CMakeFiles/
+CMakeCache.txt
+Makefile
+
+# 系统临时文件
+*.log
+*.tmp
+*.DS_Store
+Thumbs.db
