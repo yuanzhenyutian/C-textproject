@@ -5,31 +5,23 @@ using namespace std;
 class Person
 {
 public:
-	static int m_a;
+	static void func()
+	{
+		cout << "staic void func静态函数调用" << endl;
+	}
 };
+//void Person::func();
 
-int Person::m_a = 100;
-
-void test01()
+void test1()
 {
 	Person p;
-	cout << p.m_a << endl;
-	Person p1;
-	p.m_a = 200;
-	cout << p.m_a << endl;
-}
-void text2()
-{
-
-	/*Person p;
-	cout << p.m_a<<endl;*/
-	cout << Person::m_a << endl;
-}
-
+	p.func();
+	
+	Person::func();
+} 
 int main()
 {  
 
-	/*test01();*/
-	text2();
+	test1();
 
 }
