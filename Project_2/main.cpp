@@ -5,23 +5,42 @@ using namespace std;
 class Person
 {
 public:
-	static void func()
+	Person(int age)
 	{
-		cout << "staic void func静态函数调用" << endl;
+		this->age = age;
 	}
+	Person PersonAddAge(Person & p)
+	{
+		this->age += p.age ;
+
+		return *this;
+	}
+
+	int age;
+	 
 };
-//void Person::func();
 
 void test1()
 {
-	Person p;
-	p.func();
+	Person p1(18);
+	cout << "P1的年龄为：" << p1.age << endl;
 	
-	Person::func();
-} 
+}
+
+void test02()
+{
+	Person p1(10);
+	Person p2(10);
+	
+	p2.PersonAddAge(p1).PersonAddAge(p1).PersonAddAge(p1);
+
+	cout << "P2的年龄为：" << p2.age << endl;
+	
+}
+
 int main()
 {  
 
 	test1();
-
+	test02();
 }
