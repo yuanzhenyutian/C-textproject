@@ -2,37 +2,52 @@
 #include <string>
 using namespace std;
 
-//全局函数友元
-class Building
+//加号运算符重载
+
+class Person
 {
-	friend void goodgay(Building* buiding);
 public:
-	Building()
-	{
-		m_sittingRoom = "客厅";
-		m_BedRoom = "卧室";
-	}
-
-	string m_sittingRoom;
-
-private:
-
-	string m_BedRoom;
+	int m_a;
+	int m_b;
+//Person operator+ (Person &p)    //1成员函数重载
+//{
+//	Person temp;
+//	temp.m_a = m_a + p.m_a;
+//	temp.m_b = m_a + p.m_a;
+//	return(temp);
+//}
 
 };
-//全局函数
-void goodgay(Building* buiding)
+
+Person operator+(Person& p1, Person& p2)
 {
-	cout << "可以访问: " << buiding->m_sittingRoom << endl;
-	cout << "可以访问: " << buiding->m_BedRoom << endl;
+	Person temp;
+	temp.m_a = p1.m_a + p2.m_a;
+	temp.m_b = p2.m_b + p2.m_b;
+	return temp;
 }
+
 void test01()
 {
-	Building build;
-	goodgay(&build);
+	Person p1;
+	p1.m_a = 10;
+	p1.m_b = 10;
+	Person p2;
+	p2.m_a = 10;
+	p2.m_b = 10;
+
+	Person p3 = p1 + p2;
+	cout << "p3.ma=" << p3.m_a << endl;
+	cout << "p3.mb=" << p3.m_b << endl;
+
 }
+
+
+//2全局函数重载
+
 int main()
 {  
 	test01();
 	
 }
+ 
