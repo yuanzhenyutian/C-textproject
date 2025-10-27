@@ -2,45 +2,37 @@
 #include <string>
 using namespace std;
 
-class Person
+//全局函数友元
+class Building
 {
+	friend void goodgay(Building* buiding);
 public:
-	Person(int age)
+	Building()
 	{
-		this->age = age;
-	}
-	Person PersonAddAge(Person & p)
-	{
-		this->age += p.age ;
-
-		return *this;
+		m_sittingRoom = "客厅";
+		m_BedRoom = "卧室";
 	}
 
-	int age;
-	 
+	string m_sittingRoom;
+
+private:
+
+	string m_BedRoom;
+
 };
-
-void test1()
+//全局函数
+void goodgay(Building* buiding)
 {
-	Person p1(18);
-	cout << "P1的年龄为：" << p1.age << endl;
-	
+	cout << "可以访问: " << buiding->m_sittingRoom << endl;
+	cout << "可以访问: " << buiding->m_BedRoom << endl;
 }
-
-void test02()
+void test01()
 {
-	Person p1(10);
-	Person p2(10);
-	
-	p2.PersonAddAge(p1).PersonAddAge(p1).PersonAddAge(p1);
-
-	cout << "P2的年龄为：" << p2.age << endl;
-	
+	Building build;
+	goodgay(&build);
 }
-
 int main()
 {  
-
-	test1();
-	test02();
+	test01();
+	
 }
