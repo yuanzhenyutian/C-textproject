@@ -2,38 +2,56 @@
 #include <string>
 using namespace std;
 
-//加号运算符重载
-
-class Person
+class Mypro
 {
-friend	ostream& operator<<(ostream& cout, Person& p);
-friend void test1();
+	friend ostream& operator<<(ostream& cout, Mypro p1);
+public:
+	Mypro()
+	{
+		m_num = 0;
+	}
+
+	Mypro& operator++()
+	{
+		m_num++;
+		return *this;
+	}
+
+	Mypro operator++(int)
+	{
+		Mypro temp;
+		m_num++;
+		return temp;
+	}
+
 private:
-	int m_a;
-	int m_b;
-};
+	int m_num;
+ };
 
-ostream &operator<<(ostream &cout,Person &p)
+
+ostream& operator<<(ostream& cout, Mypro pro)
 {
-	cout << "m_a:" << p.m_a << "\nm_b:" << p.m_b ;
-
+	cout << pro.m_num;
 	return cout;
 }
 
-void test1()
+void text1()
 {
-	Person p1;
-	p1.m_a = 10;
-	p1.m_b = 20; 
-	cout << p1<<endl;
-	cout << "....m_a....:" << p1.m_a << "\n....m_b....:" << p1.m_b << endl;
+	Mypro p1;
+
+	cout << ++p1 << endl;
 }
-
-
-//2全局函数重载
+void text2()
+{
+	Mypro p2;
+	cout << p2++ << endl;
+	cout << p2 << endl;
+}
 
 int main()
 {  
-	test1();
+	/*text1();*/
+
+	text2();
 }
  
