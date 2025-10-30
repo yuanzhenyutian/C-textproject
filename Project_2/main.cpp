@@ -1,102 +1,90 @@
 #include <iostream>
 #include <string>
 using namespace std;
+//多态案例2 制作饮品
 
-//分别使用普通和多态的写法  写计算器
-class calculator
+class Drink
 {
 public:
-	int getResult(string oper)
+	virtual void Boil() = 0; //煮水
+	virtual void Brew() = 0;//冲泡 
+	virtual void PourInCup() = 0;//倒入杯中
+	virtual void PutSomething() = 0; //加入辅料
+
+	void MakeDringk()
 	{
-		if(oper=="+")
-		{
-			return m_num1 + m_num2;
-		}
-		else if (oper == "-")
-		{
-			return m_num1 - m_num2;
-		}
-		else if (oper == "*")
-		{
-			return m_num1 * m_num2;
-		}
+		Boil();
+		Brew();
+		PourInCup();
+		PutSomething();
+		
 	}
-	int m_num1;
-	int m_num2;
+	
 };
 
-void text1()
+class Coff :public Drink  //咖啡
 {
-	calculator cal;  //创建计算器对象
-	cal.m_num1 = 20;
-	cal.m_num2 = 10;
+public:
 
-	cout << cal.m_num1 << " + " << cal.m_num2 << " = " << cal.getResult("+") << endl;
-	cout << cal.m_num1 << " - " << cal.m_num2 << " = " << cal.getResult("-") << endl;
-	cout << cal.m_num1 << " * " << cal.m_num2 << " = " << cal.getResult("*") << endl;
+	virtual void Boil()
+	{
+		cout << "1--煮水，做好准备" << endl;
+	}
+	virtual void Brew() 
+	{
+		cout << "2--冲泡咖啡" << endl;
+	}
+	virtual void PourInCup()
+	{
+		cout << "3--倒入杯中" << endl;
+	}
+	virtual void PutSomething() 
+	{
+		cout << "4--加入糖和牛奶" << endl;
+	}
+	
+};
+class Tea :public Drink
+{
+public:
+	virtual void Boil()
+	{
+		cout << "1--煮水，做好准备" << endl;
+	}
+	virtual void Brew()
+	{
+		cout << "2--冲泡茶叶" << endl;
+	}
+	virtual void PourInCup()
+	{
+		cout << "3--倒入杯中" << endl;
+	}
+	virtual void PutSomething()
+	{
+		/*cout << "4--加入柠檬" << endl;*/
+	}
+};
+void dowork(Drink* drink)
+{
+
+	drink->MakeDringk();
+	delete drink;
 }
-//利用多态实现计算器
-
-//实现计算器抽象类
-
-class Abstractcalculator   
+void test01()
 {
-public:
-	virtual int getResult()
-	{
-		return 0 ;
-	}
-	int m_Num1=20;
-	int m_Num2=15;
-};
+	//制作咖啡
+	dowork(new Coff);
 
-class addcalculator :public Abstractcalculator  //加法计算
-{
-public:
-	int getResult()
-	{
-		return m_Num1 + m_Num2;
-	}
-};
-class subcalculator :public Abstractcalculator  //减法计算
-{
-public:
-	int getResult()
-	{
-		return m_Num1 - m_Num2;
-	}
-};
+	cout << "-----***-----***-----***-----" << endl;
+	
+	dowork(new Tea);
 
-class mulcalculator :public Abstractcalculator  //乘法计算
-{
-public:
-	int getResult()
-	{
-		return m_Num1 * m_Num2;
-	}
-};
+} 
 
-void text2()
-{
-	Abstractcalculator* abc = new addcalculator;  //加法
-	abc->m_Num1 ;
-	abc->m_Num2 ;
-	cout << abc->m_Num1 << "+" << abc->m_Num2 <<" = " << abc->getResult()<<endl;
-	delete abc;
-	//减法
-	abc = new subcalculator;
-	cout << abc->m_Num1 << "-" << abc->m_Num2 << " = " << abc->getResult() << endl;
-	delete abc;
-	//乘法
-	abc = new mulcalculator;
-	cout << abc->m_Num1 << "*" << abc->m_Num2 << " = " << abc->getResult() << endl;
-	delete abc;
-}
 int main()
 {  
-	/*text1();*/
-	text2();
-	
+
+	test01();
 	system("pause");
 }
  
