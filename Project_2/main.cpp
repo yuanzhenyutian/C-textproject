@@ -1,38 +1,30 @@
-#include <iostream>
+﻿#include <iostream>
 #include <string>
-#include <fstream>
-
 using namespace std;
 
-class Person
+template<typename T>
+void Num(T& a, T& b)
 {
-public:
-
-    char m_name[64];
-    int m_age;
-};
-
-void text1()
-{
-    ifstream ifs;
-    ifs.open("main.txt", ios::in | ios::binary);
-    if (!ifs.is_open())
-    {
-        cout << "无法打开文件......" << endl;
-
-        return;
-    }
-    Person p;
-
-    ifs.read((char*)&p, sizeof(p));
-
-    cout << "姓名 ：" << p.m_name << "年龄 ：" << p.m_age << endl;
-
-    ifs.close();
-
+	T temp = a;
+	a = b;
+	b = temp;
 }
 
- int main()
-{  
-    text1();
+void text()
+{
+	int a = 10;
+	int b = 100;
+
+	//第一种形式
+	/*Num(a, b);*/
+	Num<int>(a, b);
+
+
+	cout << "a=" << a << endl;
+	cout << "b=" << b << endl;
+}
+
+int main()
+{
+	text();
 }
